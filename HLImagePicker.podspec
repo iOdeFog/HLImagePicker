@@ -17,11 +17,11 @@ Pod::Spec.new do |s|
 
   s.name         = "HLImagePicker"
   s.version      = "1.0.0"
-  s.summary      = "AlertView 快速从相册选择一张图片，并可以按照尺寸压缩，压缩又分为像素压缩和非像素压缩"
+  s.summary      = "以AlertView 快速从相册选择一张图片，并可以按照尺寸压缩，压缩又分为像素压缩和非像素压缩"
 
   s.description  = <<-DESC
-                   A longer description of HLImagePicker in Markdown format.
-
+                   快速从相册选择一张图片，并可以按照尺寸压缩，压缩又分为像素压
+缩和非像素压
                    * Think: Why did you write this? What is the focus? What does it do?
                    * CocoaPods will be using this to generate tags, and improve search results.
                    * Try to keep it short, snappy and to the point.
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "lihongli" => "lihongli" }
+  s.author             = { "lihongli" => "305897143@qq.com" }
   # Or just: s.author    = "lihongli"
   # s.authors            = { "lihongli" => "lihongli" }
   # s.social_media_url   = "http://twitter.com/lihongli"
@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
+  s.platform     = :ios
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
@@ -90,8 +90,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "HLImagePicker/**"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "HLImagePicker/*.{h,m}"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -116,10 +116,10 @@ Pod::Spec.new do |s|
   #  the lib prefix of their name.
   #
 
-  # s.framework  = "SomeFramework"
+   s.framework  = "UIKit"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
-  # s.library   = "iconv"
+   s.library   = "CommonCrypto"
   # s.libraries = "iconv", "xml2"
 
 
@@ -129,7 +129,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  s.requires_arc = true
+   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"

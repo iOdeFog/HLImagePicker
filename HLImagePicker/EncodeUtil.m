@@ -1,9 +1,9 @@
 //
 //  EncodeUtil.m
-//  mcare-core
+//  LHL
 //
-//  Created by sam on 12-9-25.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by LHL on 15/9/6.
+//  Copyright (c) 2015年 李红力-易到用车iOS开发工程师. All rights reserved.
 //
 
 #import "EncodeUtil.h"
@@ -18,7 +18,7 @@
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
     
     // Create 16 byte MD5 hash value, store in buffer
-    CC_MD5(ptr, strlen(ptr), md5Buffer);
+    CC_MD5(ptr, (CC_LONG)strlen(ptr), md5Buffer);
     
     // Convert MD5 value in the buffer to NSString of hex values
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];

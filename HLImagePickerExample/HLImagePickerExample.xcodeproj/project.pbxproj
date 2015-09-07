@@ -14,8 +14,8 @@
 		C7941E4F1B9C4B2D008FBF5B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7941E4E1B9C4B2D008FBF5B /* Images.xcassets */; };
 		C7941E521B9C4B2D008FBF5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7941E501B9C4B2D008FBF5B /* LaunchScreen.xib */; };
 		C7941E5E1B9C4B2D008FBF5B /* HLImagePickerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E5D1B9C4B2D008FBF5B /* HLImagePickerExampleTests.m */; };
-		C7941E6C1B9C4B38008FBF5B /* EncodeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E691B9C4B38008FBF5B /* EncodeUtil.m */; };
-		C7941E6D1B9C4B38008FBF5B /* HLImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E6B1B9C4B38008FBF5B /* HLImagePicker.m */; };
+		C7D8510D1B9D2763002D7381 /* EncodeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D8510A1B9D2763002D7381 /* EncodeUtil.m */; };
+		C7D8510E1B9D2763002D7381 /* HLImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D8510C1B9D2763002D7381 /* HLImagePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +42,10 @@
 		C7941E571B9C4B2D008FBF5B /* HLImagePickerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HLImagePickerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7941E5C1B9C4B2D008FBF5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7941E5D1B9C4B2D008FBF5B /* HLImagePickerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLImagePickerExampleTests.m; sourceTree = "<group>"; };
-		C7941E681B9C4B38008FBF5B /* EncodeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodeUtil.h; sourceTree = "<group>"; };
-		C7941E691B9C4B38008FBF5B /* EncodeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodeUtil.m; sourceTree = "<group>"; };
-		C7941E6A1B9C4B38008FBF5B /* HLImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLImagePicker.h; sourceTree = "<group>"; };
-		C7941E6B1B9C4B38008FBF5B /* HLImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLImagePicker.m; sourceTree = "<group>"; };
+		C7D851091B9D2763002D7381 /* EncodeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodeUtil.h; sourceTree = "<group>"; };
+		C7D8510A1B9D2763002D7381 /* EncodeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodeUtil.m; sourceTree = "<group>"; };
+		C7D8510B1B9D2763002D7381 /* HLImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLImagePicker.h; sourceTree = "<group>"; };
+		C7D8510C1B9D2763002D7381 /* HLImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLImagePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +87,11 @@
 		C7941E401B9C4B2D008FBF5B /* HLImagePickerExample */ = {
 			isa = PBXGroup;
 			children = (
+				C7D851081B9D2763002D7381 /* HLImagePicker */,
 				C7941E451B9C4B2D008FBF5B /* AppDelegate.h */,
 				C7941E461B9C4B2D008FBF5B /* AppDelegate.m */,
 				C7941E481B9C4B2D008FBF5B /* ViewController.h */,
 				C7941E491B9C4B2D008FBF5B /* ViewController.m */,
-				C7941E671B9C4B38008FBF5B /* HLImagePicker */,
 				C7941E4B1B9C4B2D008FBF5B /* Main.storyboard */,
 				C7941E4E1B9C4B2D008FBF5B /* Images.xcassets */,
 				C7941E501B9C4B2D008FBF5B /* LaunchScreen.xib */,
@@ -126,15 +126,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C7941E671B9C4B38008FBF5B /* HLImagePicker */ = {
+		C7D851081B9D2763002D7381 /* HLImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				C7941E681B9C4B38008FBF5B /* EncodeUtil.h */,
-				C7941E691B9C4B38008FBF5B /* EncodeUtil.m */,
-				C7941E6A1B9C4B38008FBF5B /* HLImagePicker.h */,
-				C7941E6B1B9C4B38008FBF5B /* HLImagePicker.m */,
+				C7D851091B9D2763002D7381 /* EncodeUtil.h */,
+				C7D8510A1B9D2763002D7381 /* EncodeUtil.m */,
+				C7D8510B1B9D2763002D7381 /* HLImagePicker.h */,
+				C7D8510C1B9D2763002D7381 /* HLImagePicker.m */,
 			);
-			path = HLImagePicker;
+			name = HLImagePicker;
+			path = ../../HLImagePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,11 +238,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D8510E1B9D2763002D7381 /* HLImagePicker.m in Sources */,
 				C7941E4A1B9C4B2D008FBF5B /* ViewController.m in Sources */,
 				C7941E471B9C4B2D008FBF5B /* AppDelegate.m in Sources */,
 				C7941E441B9C4B2D008FBF5B /* main.m in Sources */,
-				C7941E6D1B9C4B38008FBF5B /* HLImagePicker.m in Sources */,
-				C7941E6C1B9C4B38008FBF5B /* EncodeUtil.m in Sources */,
+				C7D8510D1B9D2763002D7381 /* EncodeUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
