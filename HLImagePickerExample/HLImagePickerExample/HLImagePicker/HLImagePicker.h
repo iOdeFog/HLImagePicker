@@ -1,16 +1,16 @@
 //
-//  LeBoImagePicker.h
-//  LeBo
+//  HLImagePicker.h
+//  LHL
 //
-//  Created by Qiang Zhuang on 12/30/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by LHL on 15/9/6.
+//  Copyright (c) 2015年 李红力-易到用车iOS开发工程师. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 #define IMAGE_MAXIMUM_BYTES 1024000.0f   // 1024000 = 1000 * 1024 bytes
 
-@protocol LeBoImagePickerDelegate <NSObject>
+@protocol HLImagePickerDelegate <NSObject>
 
 @optional
 - (void)setViewPhoto:(NSString *)path sender:(id)sender;
@@ -18,7 +18,7 @@
 
 @end
 
-@interface LeBoImagePicker : NSObject <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, LeBoImagePickerDelegate> {
+@interface HLImagePicker : NSObject <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, HLImagePickerDelegate> {
     UIImagePickerController *pickerController;
     UIViewController *pController;
     id tapSender;

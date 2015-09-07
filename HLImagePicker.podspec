@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "HLImagePicker"
   s.version      = "1.0.0"
-  s.summary      = "A short description of HLImagePicker."
+  s.summary      = "AlertView 快速从相册选择一张图片，并可以按照尺寸压缩，压缩又分为像素压缩和非像素压缩"
 
   s.description  = <<-DESC
                    A longer description of HLImagePicker in Markdown format.
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "HLImagePicker/**/*.{h,m}"
+  s.source_files  = "HLImagePicker/**"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -129,7 +129,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"

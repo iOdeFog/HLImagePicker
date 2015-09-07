@@ -1,9 +1,9 @@
 //
 //  EncodeUtil.m
-//  mcare-core
+//  LHL
 //
-//  Created by sam on 12-9-25.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by LHL on 15/9/6.
+//  Copyright (c) 2015年 李红力-易到用车iOS开发工程师. All rights reserved.
 //
 
 #import "EncodeUtil.h"

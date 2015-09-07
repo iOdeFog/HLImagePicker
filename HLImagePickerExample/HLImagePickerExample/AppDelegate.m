@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "HLImagePicker.h"
 
 @interface AppDelegate ()
 

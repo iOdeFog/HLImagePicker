@@ -15,7 +15,7 @@
 		C7941E521B9C4B2D008FBF5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7941E501B9C4B2D008FBF5B /* LaunchScreen.xib */; };
 		C7941E5E1B9C4B2D008FBF5B /* HLImagePickerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E5D1B9C4B2D008FBF5B /* HLImagePickerExampleTests.m */; };
 		C7941E6C1B9C4B38008FBF5B /* EncodeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E691B9C4B38008FBF5B /* EncodeUtil.m */; };
-		C7941E6D1B9C4B38008FBF5B /* LeBoImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E6B1B9C4B38008FBF5B /* LeBoImagePicker.m */; };
+		C7941E6D1B9C4B38008FBF5B /* HLImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E6B1B9C4B38008FBF5B /* HLImagePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +44,8 @@
 		C7941E5D1B9C4B2D008FBF5B /* HLImagePickerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLImagePickerExampleTests.m; sourceTree = "<group>"; };
 		C7941E681B9C4B38008FBF5B /* EncodeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodeUtil.h; sourceTree = "<group>"; };
 		C7941E691B9C4B38008FBF5B /* EncodeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodeUtil.m; sourceTree = "<group>"; };
-		C7941E6A1B9C4B38008FBF5B /* LeBoImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeBoImagePicker.h; sourceTree = "<group>"; };
-		C7941E6B1B9C4B38008FBF5B /* LeBoImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeBoImagePicker.m; sourceTree = "<group>"; };
+		C7941E6A1B9C4B38008FBF5B /* HLImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLImagePicker.h; sourceTree = "<group>"; };
+		C7941E6B1B9C4B38008FBF5B /* HLImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLImagePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +131,8 @@
 			children = (
 				C7941E681B9C4B38008FBF5B /* EncodeUtil.h */,
 				C7941E691B9C4B38008FBF5B /* EncodeUtil.m */,
-				C7941E6A1B9C4B38008FBF5B /* LeBoImagePicker.h */,
-				C7941E6B1B9C4B38008FBF5B /* LeBoImagePicker.m */,
+				C7941E6A1B9C4B38008FBF5B /* HLImagePicker.h */,
+				C7941E6B1B9C4B38008FBF5B /* HLImagePicker.m */,
 			);
 			path = HLImagePicker;
 			sourceTree = "<group>";
@@ -240,7 +240,7 @@
 				C7941E4A1B9C4B2D008FBF5B /* ViewController.m in Sources */,
 				C7941E471B9C4B2D008FBF5B /* AppDelegate.m in Sources */,
 				C7941E441B9C4B2D008FBF5B /* main.m in Sources */,
-				C7941E6D1B9C4B38008FBF5B /* LeBoImagePicker.m in Sources */,
+				C7941E6D1B9C4B38008FBF5B /* HLImagePicker.m in Sources */,
 				C7941E6C1B9C4B38008FBF5B /* EncodeUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +438,7 @@
 				C7941E631B9C4B2D008FBF5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C7941E641B9C4B2D008FBF5B /* Build configuration list for PBXNativeTarget "HLImagePickerExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +447,7 @@
 				C7941E661B9C4B2D008FBF5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

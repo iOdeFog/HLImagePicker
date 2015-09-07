@@ -1,16 +1,16 @@
 //
-//  LeBoImagePicker.m
-//  LeBo
+//  HLImagePicker.m
+//  LHL
 //
-//  Created by Qiang Zhuang on 12/30/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by LHL on 15/9/6.
+//  Copyright (c) 2015年 李红力-易到用车iOS开发工程师. All rights reserved.
 //
 
-#import "LeBoImagePicker.h"
+#import "HLImagePicker.h"
 #import "EncodeUtil.h"
 
 
-@implementation LeBoImagePicker
+@implementation HLImagePicker
 @synthesize toCut;
 
 - (void)showActionSheet:(UIView *)view {
