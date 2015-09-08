@@ -19,6 +19,7 @@
     //  action.alpha = 0.9;
     action.tag = 1;
     [action showInView: view];
+    CFRunLoopRun();
 }
 
 - (void)tap:(id)delegate inView:(UIView *)view inController:(UIViewController *)controller toCut:(BOOL)to_Cut {
@@ -38,6 +39,7 @@
             [self clickPhoto:1];
         }
     }
+    CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
 - (void)clickPhoto:(NSInteger)sender

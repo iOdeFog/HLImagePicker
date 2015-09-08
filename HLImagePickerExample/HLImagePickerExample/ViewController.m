@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "HLImagePicker.h"
 @interface ViewController ()
 
 @end
@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)buttonClicked:(id)sender {
+    HLImagePicker *imagePicker = [[HLImagePicker alloc] init];
+    [imagePicker tap:self inView:self.view inController:self toCut:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {

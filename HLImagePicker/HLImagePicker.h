@@ -28,6 +28,8 @@
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, assign) BOOL toCut;  
 
+- (void)showActionSheet:(UIView *)view ;
+
 - (void)tap:(id)delegate inView:(UIView *)view inController:(UIViewController *)controller toCut:(BOOL)to_Cut;
 
 /*

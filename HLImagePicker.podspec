@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "HLImagePicker"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "以AlertView快速从相册选择一张图片，并可以按照尺寸压缩，压缩又分为像素压缩和非像素压缩"
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/lihongli528628/HLImagePicker.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/lihongli528628/HLImagePicker.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
