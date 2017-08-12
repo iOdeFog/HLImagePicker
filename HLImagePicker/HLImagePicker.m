@@ -15,9 +15,22 @@ typedef enum : NSUInteger {
 } HLImagePickerType;
 
 @interface HLImagePicker()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
 @end
 
 @implementation HLImagePicker
+
+static HLImagePicker *picker = nil;
+static dispatch_once_t onceToken;
+
++ (instancetype)shareInstanced{
+    dispatch_once(&onceToken, ^{
+        if (!picker) {
+            picker = [[[self class] alloc] init];
+        }
+    });
+    return picker;
+}
 
 - (instancetype)init{
     if (self = [super init]) {
@@ -27,14 +40,23 @@ typedef enum : NSUInteger {
 }
 
 - (void)showActionSheet{
+    if (self.isShowing || [[self.class topViewController] isKindOfClass:[UIAlertController class]]) {
+        return;
+    }
+    self.isShowing = YES;
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍摄" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.isShowing = NO;
         [self selectPhotoPickerType:HLImagePicker_Camera];
     }];
     UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.isShowing = NO;
         [self selectPhotoPickerType:HLImagePicker_Libray];
     }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        self.isShowing = NO;
+    }];
     
     [alertController addAction:cameraAction];
     [alertController addAction:photoAction];
@@ -42,18 +64,28 @@ typedef enum : NSUInteger {
     [[HLImagePicker topViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
-+ (UIViewController *)topViewController
-{
-    UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if ([rootVC isKindOfClass:[UIViewController class]]) {
-        return rootVC;
-    }
-    rootVC = [[[UIApplication sharedApplication].windows firstObject] rootViewController];
-    if ([rootVC isKindOfClass:[UIViewController class]]) {
-        return rootVC;
-    }
-    return nil;
++ (UIViewController *)topViewController {
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    return [self.class topViewController:rootViewController];
 }
+
++ (UIViewController *)topViewController:(UIViewController *)viewController {
+    if (viewController.presentedViewController) {
+        return [self topViewController:viewController.presentedViewController];
+        
+    } else if([viewController isKindOfClass:UINavigationController.class]) {
+        UINavigationController *navigationController = (UINavigationController *) viewController;
+        return [self topViewController:navigationController.visibleViewController];
+        
+    } else if([viewController isKindOfClass:UITabBarController.class]) {
+        UITabBarController *tabBarController = (UITabBarController *)viewController;
+        return [self topViewController:tabBarController.selectedViewController];
+        
+    } else {
+        return viewController;
+    }
+}
+
 
 + (HLImagePicker *)showPickerImageBlock:(PikerImageBlock)imageBlock
                               dataBlock:(PikerDataBlock)dataBlock
@@ -69,7 +101,12 @@ typedef enum : NSUInteger {
                               ImageBlock:(PikerImageBlock)imageBlock
                                dataBlock:(PikerDataBlock)dataBlock
 {
-    HLImagePicker *imagePicker = [[HLImagePicker alloc] init];
+    HLImagePicker *imagePicker = [HLImagePicker shareInstanced];
+    
+    if ([[self.class topViewController] isKindOfClass:[UIAlertController class]]) {
+        return imagePicker;
+    }
+    
     [imagePicker showPickerOriginImage:originImage pixelCompress:pixelCompress maxPixel:maxPixel jpegCompress:jpegCompress maxSize_KB:maxSize_KB];
     imagePicker.imageBlock = imageBlock;
     imagePicker.dataBlock = dataBlock;

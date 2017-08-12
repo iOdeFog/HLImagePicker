@@ -24,7 +24,10 @@ typedef void(^PikerDataBlock)(NSData *data, id picker);
 @property (nonatomic, assign) BOOL jpegCompress;
 @property (nonatomic, assign) CGFloat maxSize_KB;
 
+@property (nonatomic, assign) BOOL isShowing ;
 @property (nonatomic, assign) BOOL allowsEditing;
+
+- (void)showActionSheet;
 
 
 + (UIViewController *)topViewController;
