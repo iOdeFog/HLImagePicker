@@ -22,27 +22,28 @@
 }
 
 - (IBAction)imagePicker:(id)sender {
-    __weak typeof(self) mySelf = self;
-    self.picker = [HLImagePicker showPickerImageBlock:^(UIImage *image, id picker) {
-        mySelf.contentImageView.image = image;
-    } dataBlock:^(NSData *data, id picker) {
-        
-    }];
+    self.picker = [[HLImagePicker alloc] init];
+    self.picker.delegate = self;
+    [self.picker tap:sender inView:self.view inController:self toCut:NO saveDocument:NO];
 }
 
 /*
  * 返回图片
  */
-- (void)imagePikerImage:(UIImage *)image picker:(HLImagePicker *)picker{
-
+- (void)setViewPhoto:(NSString *)path sender:(id)sender{
+    
 }
+
+- (void)setViewPhotoInfo:(NSDictionary *)path sender:(id)sender{
+    
+}
+
 /*
  * 返回图片Data
  */
-- (void)imagePikerData:(NSData *)imageData picker:(HLImagePicker *)picker{
-
+- (void)setViewImageData:(NSData *)imageData{
+    
 }
-
 
 
 - (void)didReceiveMemoryWarning {

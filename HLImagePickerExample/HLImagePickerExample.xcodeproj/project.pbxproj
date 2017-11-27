@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C76D6FA41FCBB8110078F570 /* HLImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C76D6FA31FCBB8110078F570 /* HLImagePickerController.m */; };
 		C7941E441B9C4B2D008FBF5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E431B9C4B2D008FBF5B /* main.m */; };
 		C7941E471B9C4B2D008FBF5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E461B9C4B2D008FBF5B /* AppDelegate.m */; };
 		C7941E4A1B9C4B2D008FBF5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E491B9C4B2D008FBF5B /* ViewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C76D6FA21FCBB8100078F570 /* HLImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLImagePickerController.h; sourceTree = "<group>"; };
+		C76D6FA31FCBB8110078F570 /* HLImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLImagePickerController.m; sourceTree = "<group>"; };
 		C7941E3E1B9C4B2D008FBF5B /* HLImagePickerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLImagePickerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7941E421B9C4B2D008FBF5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7941E431B9C4B2D008FBF5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				C7D8510A1B9D2763002D7381 /* EncodeUtil.m */,
 				C7D8510B1B9D2763002D7381 /* HLImagePicker.h */,
 				C7D8510C1B9D2763002D7381 /* HLImagePicker.m */,
+				C76D6FA21FCBB8100078F570 /* HLImagePickerController.h */,
+				C76D6FA31FCBB8110078F570 /* HLImagePickerController.m */,
 			);
 			name = HLImagePicker;
 			path = ../../HLImagePicker;
@@ -187,7 +192,7 @@
 				TargetAttributes = {
 					C7941E3D1B9C4B2D008FBF5B = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 8F3NE7XBN7;
+						DevelopmentTeam = M675EFBDE2;
 						ProvisioningStyle = Manual;
 					};
 					C7941E561B9C4B2D008FBF5B = {
@@ -245,6 +250,7 @@
 				C7941E471B9C4B2D008FBF5B /* AppDelegate.m in Sources */,
 				C7941E441B9C4B2D008FBF5B /* main.m in Sources */,
 				C7D8510D1B9D2763002D7381 /* EncodeUtil.m in Sources */,
+				C76D6FA41FCBB8110078F570 /* HLImagePickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,13 +376,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8F3NE7XBN7;
+				DEVELOPMENT_TEAM = M675EFBDE2;
 				INFOPLIST_FILE = HLImagePickerExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aa26833a-8695-4e7e-8e3b-ac7cb3552bcf";
-				PROVISIONING_PROFILE_SPECIFIER = commonProfile;
+				PROVISIONING_PROFILE = "27f58301-9d24-42bd-9240-f83d227f6fde";
+				PROVISIONING_PROFILE_SPECIFIER = Common_lhl_Development;
 			};
 			name = Debug;
 		};
@@ -384,12 +390,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = M675EFBDE2;
 				INFOPLIST_FILE = HLImagePickerExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "27f58301-9d24-42bd-9240-f83d227f6fde";
+				PROVISIONING_PROFILE_SPECIFIER = Common_lhl_Development;
 			};
 			name = Release;
 		};
