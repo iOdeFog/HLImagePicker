@@ -11,7 +11,7 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
-@property (nonatomic, strong) HLImagePicker *picker ;
+
 @end
 
 @implementation ViewController
@@ -22,27 +22,12 @@
 }
 
 - (IBAction)imagePicker:(id)sender {
-    self.picker = [[HLImagePicker alloc] init];
-    self.picker.delegate = self;
-    [self.picker tap:sender inView:self.view inController:self toCut:NO saveDocument:NO];
-}
-
-/*
- * 返回图片
- */
-- (void)setViewPhoto:(NSString *)path sender:(id)sender{
-    
-}
-
-- (void)setViewPhotoInfo:(NSDictionary *)path sender:(id)sender{
-    
-}
-
-/*
- * 返回图片Data
- */
-- (void)setViewImageData:(NSData *)imageData{
-    
+    __weak typeof(self) mySelf = self;
+    [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
+        mySelf.contentImageView.image = image;
+    } dataBlock:^(NSData *data, id picker) {
+        
+    }];
 }
 
 

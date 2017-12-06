@@ -3,54 +3,93 @@
 //  LHL
 //
 //  Created by LHL on 15/9/6.
-//  Copyright (c) 2015年 李红力-易到用车iOS开发工程师. All rights reserved.
+//  Copyright (c) 2015年 李红力. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 #define IMAGE_MAXIMUM_BYTES 1024000.0f   // 1024000 = 1000 * 1024 bytes
 
-@protocol HLImagePickerDelegate <NSObject>
-
-@optional
-
-// saveDocument = YES 时生效
-- (void)setViewPhoto:(NSString *)path sender:(id)sender;
-- (void)setViewPhotoInfo:(NSDictionary *)path sender:(id)sender;
+typedef enum : NSUInteger {
+    HLImagePicker_Camera,
+    HLImagePicker_Libray,
+} HLImagePickerType;
 
 
-- (void)setViewImageData:(NSData *)imageData;
+typedef void(^mm)(NSString *s);
+typedef void(^PikerImageBlock)(UIImage *image, id picker);
+typedef void(^PikerDataBlock)(NSData *data, id picker);
 
-@end
+@interface HLImagePicker : NSObject
 
-@interface HLImagePicker : NSObject <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate,UIPopoverControllerDelegate, HLImagePickerDelegate> {
-    UIImagePickerController *pickerController;
-    UIViewController *pController;
-    id tapSender;
-    BOOL toCut;
-    BOOL saveDocument;
-}
+@property (nonatomic, copy) PikerImageBlock imageBlock;
+@property (nonatomic, copy) PikerDataBlock dataBlock;
+@property (nonatomic, assign) BOOL operationOriginImage;
+@property (nonatomic, assign) BOOL pixelCompress;
+@property (nonatomic, assign) CGFloat maxPixel;
+@property (nonatomic, assign) BOOL jpegCompress;
+@property (nonatomic, assign) CGFloat maxSize_KB;
 
-@property (nonatomic, weak) id delegate;
-@property (nonatomic, assign) BOOL toCut;  
-@property (strong,nonatomic) UIPopoverController * popoverViewControl;
+@property (nonatomic, assign) BOOL isShowing ;
+@property (nonatomic, assign) BOOL allowsEditing;
+
++ (instancetype)shareInstanced;
 
 
-- (void)reset;
 
-- (void)tap:(id)delegate inView:(UIView *)view inController:(UIViewController *)controller toCut:(BOOL)to_Cut saveDocument:(BOOL)save;
+
++ (UIViewController *)topViewController;
+
+/**
+ *  回调代理
+ *  是否进行裁剪压缩
+ *  最大像素尺寸。如果设置为0，则默认为maxPixel
+ */
++ (HLImagePicker *)showPickerImageBlock:(PikerImageBlock)imageBlock
+                              dataBlock:(PikerDataBlock)dataBlock;
+
+
 
 /*
- *	@brief	压缩图片 @Fire
+ *  @param  originImage    处理原始图片 默认为NO
+ *    @param     pixelCompress     是否进行像素压缩
+ *    @param     maxPixel     压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
+ *    @param     jpegCompress     是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     maxKB     图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
  *
- *	@param 	originImage 	原始图片
- *	@param 	pc 	是否进行像素压缩
- *	@param 	maxPixel 	压缩后长和宽的最大像素；pc=NO时，此参数无效。
- *	@param 	jc 	是否进行JPEG压缩
- *	@param 	maxKB 	图片最大体积，以KB为单位；jc=NO时，此参数无效。
- *
- *	@return	返回图片的NSData
  */
-- (NSData*) compressImage:(UIImage*)originImage PixelCompress:(BOOL)pc MaxPixel:(CGFloat)maxPixel JPEGCompress:(BOOL)jc MaxSize_KB:(CGFloat)maxKB;
++ (HLImagePicker *)showPickerOriginImage:(BOOL)originImage
+                           pixelCompress:(BOOL)pixelCompress
+                                maxPixel:(CGFloat)maxPixel
+                            jpegCompress:(BOOL)jpegCompress
+                              maxSize_KB:(CGFloat)maxSize_KB
+                              ImageBlock:(PikerImageBlock)imageBlock
+                               dataBlock:(PikerDataBlock)dataBlock;
+
+
+
+/*
+ *    @brief    压缩图片 @Fire
+ *
+ *    @param     originImage     原始图片
+ *    @param     pixelCompress     是否进行像素压缩
+ *    @param     maxPixel     压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
+ *    @param     jpegCompress     是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     maxKB     图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
+ *
+ *    @return    返回图片的NSData
+ */
+- (NSData*)compressImage:(UIImage*)originImage
+           pixelCompress:(BOOL)pixelCompress
+                maxPixel:(CGFloat)maxPixel
+            jpegCompress:(BOOL)jpegCompress
+              maxSize_KB:(CGFloat)maxSize_KB;
+
+- (void)selectPhotoPickerType:(HLImagePickerType)imagePickerType;
+- (void)showActionSheet;
+
 
 @end
+
+
+

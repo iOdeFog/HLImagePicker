@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C76D6FA41FCBB8110078F570 /* HLImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C76D6FA31FCBB8110078F570 /* HLImagePickerController.m */; };
 		C7941E441B9C4B2D008FBF5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E431B9C4B2D008FBF5B /* main.m */; };
 		C7941E471B9C4B2D008FBF5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E461B9C4B2D008FBF5B /* AppDelegate.m */; };
 		C7941E4A1B9C4B2D008FBF5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7941E491B9C4B2D008FBF5B /* ViewController.m */; };
@@ -30,8 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C76D6FA21FCBB8100078F570 /* HLImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLImagePickerController.h; sourceTree = "<group>"; };
-		C76D6FA31FCBB8110078F570 /* HLImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLImagePickerController.m; sourceTree = "<group>"; };
 		C7941E3E1B9C4B2D008FBF5B /* HLImagePickerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLImagePickerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7941E421B9C4B2D008FBF5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7941E431B9C4B2D008FBF5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -136,8 +133,6 @@
 				C7D8510A1B9D2763002D7381 /* EncodeUtil.m */,
 				C7D8510B1B9D2763002D7381 /* HLImagePicker.h */,
 				C7D8510C1B9D2763002D7381 /* HLImagePicker.m */,
-				C76D6FA21FCBB8100078F570 /* HLImagePickerController.h */,
-				C76D6FA31FCBB8110078F570 /* HLImagePickerController.m */,
 			);
 			name = HLImagePicker;
 			path = ../../HLImagePicker;
@@ -250,7 +245,6 @@
 				C7941E471B9C4B2D008FBF5B /* AppDelegate.m in Sources */,
 				C7941E441B9C4B2D008FBF5B /* main.m in Sources */,
 				C7D8510D1B9D2763002D7381 /* EncodeUtil.m in Sources */,
-				C76D6FA41FCBB8110078F570 /* HLImagePickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
