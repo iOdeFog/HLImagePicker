@@ -23,11 +23,20 @@
 
 - (IBAction)imagePicker:(id)sender {
     __weak typeof(self) mySelf = self;
-    [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
+   HLImagePicker *picker = [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
         mySelf.contentImageView.image = image;
     } dataBlock:^(NSData *data, id picker) {
         
     }];
+    
+//
+//    HLImagePicker *picker = [HLImagePicker shareInstanced];
+//    __weak typeof(self) mySelf = self;
+//    picker setImageBlock:^(UIImage *image, id picker) {
+//        mySelf.contentImageView.image = image;
+//    };
+//    [picker selectPhotoPickerType:HLImagePicker_Camera];
+    
 }
 
 
