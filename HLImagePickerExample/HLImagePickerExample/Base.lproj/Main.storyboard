@@ -21,26 +21,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1t7-hH-lsw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1t7-hH-lsw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdZ-ri-9o4">
-                                <rect key="frame" x="138" y="318" width="98" height="30"/>
+                                <rect key="frame" x="90" y="211" width="195" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="98" id="JYc-kC-ltM"/>
+                                    <constraint firstAttribute="width" constant="195" id="BDl-Qs-XhG"/>
+                                    <constraint firstAttribute="height" constant="30" id="nyS-1H-De3"/>
                                 </constraints>
-                                <state key="normal" title="ImagePicker"/>
+                                <state key="normal" title="系统picker，不全屏，可编辑"/>
                                 <connections>
                                     <action selector="imagePicker:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sYw-OX-tiP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zq2-lz-rZi">
+                                <rect key="frame" x="90" y="276" width="195" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ELh-y3-QDP"/>
+                                    <constraint firstAttribute="width" constant="195" id="f46-yF-UN7"/>
+                                </constraints>
+                                <state key="normal" title="自定义全屏picker，不可编辑"/>
+                                <connections>
+                                    <action selector="avImagePicker:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wuU-GR-JPZ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="NdZ-ri-9o4" firstAttribute="centerX" secondItem="1t7-hH-lsw" secondAttribute="centerX" id="JUA-O7-Un9"/>
-                            <constraint firstItem="NdZ-ri-9o4" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Nf2-ok-SvV"/>
-                            <constraint firstItem="NdZ-ri-9o4" firstAttribute="centerY" secondItem="1t7-hH-lsw" secondAttribute="centerY" id="Zaq-4O-iTF"/>
-                            <constraint firstItem="NdZ-ri-9o4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="eUO-8P-VOw"/>
+                            <constraint firstItem="NdZ-ri-9o4" firstAttribute="leading" secondItem="zq2-lz-rZi" secondAttribute="leading" id="0nT-TE-H01"/>
+                            <constraint firstAttribute="trailing" secondItem="1t7-hH-lsw" secondAttribute="trailing" id="5Jx-dN-AE6"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1t7-hH-lsw" secondAttribute="bottom" id="LLQ-Ao-snR"/>
+                            <constraint firstItem="1t7-hH-lsw" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Nxr-14-woU"/>
+                            <constraint firstItem="1t7-hH-lsw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="WUV-Az-RMr"/>
+                            <constraint firstItem="NdZ-ri-9o4" firstAttribute="centerX" secondItem="1t7-hH-lsw" secondAttribute="centerX" id="gG7-PS-pOh"/>
+                            <constraint firstItem="zq2-lz-rZi" firstAttribute="top" secondItem="NdZ-ri-9o4" secondAttribute="bottom" constant="35" id="hjf-Bj-CMI"/>
+                            <constraint firstItem="NdZ-ri-9o4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="191" id="m08-y4-1Gv"/>
                         </constraints>
                     </view>
                     <connections>

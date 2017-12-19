@@ -8,7 +8,7 @@
 
 #import "HLImagePicker.h"
 #import "EncodeUtil.h"
-
+#import "HLAVImagePickerController.h"
 
 
 @interface HLImagePickerController : UIImagePickerController
@@ -158,27 +158,42 @@ static dispatch_once_t onceToken;
 
 - (void)selectPhotoPickerType:(HLImagePickerType)imagePickerType
 {
-    UIImagePickerController* pickerController = nil;;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        pickerController = [[UIImagePickerController alloc] init];
-    } else {
-        pickerController = [[HLImagePickerController alloc] init];
-    }
-        
-    pickerController.delegate = self;
-    pickerController.allowsEditing = self.allowsEditing;
-    
-    if (imagePickerType == HLImagePicker_Camera) {
-        //先设定sourceType为相机，然后判断相机是否可用（ipod）没相机，不可用将sourceType设定为相片库
-        if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-            pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    if (self.useAVSessionImagePiker && imagePickerType == HLImagePicker_Camera) {
+        HLAVImagePickerController *pickerController = [[HLAVImagePickerController alloc] init];
+        __unsafe_unretained typeof(self) weakself = self;
+        [pickerController setImagePickerBlock:^(NSData *imageData ,UIImage *image) {
+            if (weakself.imageBlock) {
+                weakself.imageBlock(image, self);
+            }
+            
+            if (self.dataBlock) {
+                weakself.dataBlock(imageData, self);
+            }
+        }];
+        [[[self class] topViewController] presentViewController:pickerController animated:YES completion:nil];
+    }else {
+        UIImagePickerController* pickerController = nil;;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            pickerController = [[UIImagePickerController alloc] init];
         } else {
-            pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            pickerController = [[HLImagePickerController alloc] init];
         }
-    } else if (imagePickerType == HLImagePicker_Libray) {
-        pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        pickerController.delegate = self;
+        pickerController.allowsEditing = self.allowsEditing;
+        
+        if (imagePickerType == HLImagePicker_Camera) {
+            //先设定sourceType为相机，然后判断相机是否可用（ipod）没相机，不可用将sourceType设定为相片库
+            if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+                pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            } else {
+                pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            }
+        } else if (imagePickerType == HLImagePicker_Libray) {
+            pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        [[[self class] topViewController] presentViewController:pickerController animated:YES completion:nil];
     }
-    [[[self class] topViewController] presentViewController:pickerController animated:YES completion:nil];
 }
 
 - (NSData*)compressImage:(UIImage*)originImage

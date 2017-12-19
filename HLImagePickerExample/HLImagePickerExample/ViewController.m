@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "HLImagePicker.h"
+#import "HLAVImagePickerController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
@@ -23,21 +24,30 @@
 
 - (IBAction)imagePicker:(id)sender {
     __weak typeof(self) mySelf = self;
-   HLImagePicker *picker = [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
+    [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
         mySelf.contentImageView.image = image;
     } dataBlock:^(NSData *data, id picker) {
         
     }];
-    
-//
-//    HLImagePicker *picker = [HLImagePicker shareInstanced];
-//    __weak typeof(self) mySelf = self;
-//    picker setImageBlock:^(UIImage *image, id picker) {
-//        mySelf.contentImageView.image = image;
-//    };
-//    [picker selectPhotoPickerType:HLImagePicker_Camera];
-    
 }
+
+- (IBAction)avImagePicker:(id)sender {
+//    __weak typeof(self) mySelf = self;
+//    HLAVImagePickerController *pickerViewContorller = [[HLAVImagePickerController alloc] init];
+//    [pickerViewContorller setImagePickerBlock:^(NSData *imageData ,UIImage *image) {
+//        mySelf.contentImageView.image = image;
+//    }];
+//    [self presentViewController:pickerViewContorller animated:YES completion:nil];
+    __weak typeof(self) mySelf = self;
+    [[HLImagePicker shareInstanced] setUseAVSessionImagePiker:YES];
+    [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
+        mySelf.contentImageView.image = image;
+    } dataBlock:^(NSData *data, id picker) {
+        
+    }];
+
+}
+
 
 
 - (void)didReceiveMemoryWarning {

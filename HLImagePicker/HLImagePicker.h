@@ -32,6 +32,8 @@ typedef void(^PikerDataBlock)(NSData *data, id picker);
 
 @property (nonatomic, assign) BOOL isShowing ;
 @property (nonatomic, assign) BOOL allowsEditing;
+// 使用自定义拍摄界面
+@property (nonatomic, assign) BOOL useAVSessionImagePiker;
 
 + (instancetype)shareInstanced;
 
