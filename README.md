@@ -13,6 +13,7 @@
 ### 调起ActionSheet
 
 ```
+// 调用系统播放器页面，支持系统编辑
 - (IBAction)imagePicker:(id)sender {
     __weak typeof(self) mySelf = self;
    HLImagePicker *picker = [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
@@ -22,6 +23,20 @@
     }];
     
 }
+
+
+// 调用自定义拍摄页面，不支持编辑
+- (IBAction)avImagePicker:(id)sender {
+ __weak typeof(self) mySelf = self;
+    [[HLImagePicker shareInstanced] setUseAVSessionImagePiker:YES];
+    [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
+        mySelf.contentImageView.image = image;
+    } dataBlock:^(NSData *data, id picker) {
+        
+    }];
+}
+
+// 
 
 ```
 
@@ -35,7 +50,7 @@
         mySelf.contentImageView.image = image;
     };
 
-    [picker selectPhotoPickerType:HLImagePicker_Camera];
+    //[picker selectPhotoPickerType:HLImagePicker_Camera];
     [picker selectPhotoPickerType:HLImagePicker_Libray];
 
 
