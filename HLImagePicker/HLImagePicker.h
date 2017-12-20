@@ -33,6 +33,9 @@ typedef void(^PikerDataBlock)(NSData *data, id picker);
 @property (nonatomic, assign) BOOL isShowing ;
 @property (nonatomic, assign) BOOL allowsEditing;
 // 使用自定义拍摄界面
+/**
+ * 建议pad 只支持 系统原生播放器。因为自定义图片会拉大。 也就是pad useAVSessionImagePiker=NO;
+ */
 @property (nonatomic, assign) BOOL useAVSessionImagePiker;
 
 + (instancetype)shareInstanced;
@@ -86,6 +89,7 @@ typedef void(^PikerDataBlock)(NSData *data, id picker);
                 maxPixel:(CGFloat)maxPixel
             jpegCompress:(BOOL)jpegCompress
               maxSize_KB:(CGFloat)maxSize_KB;
+
 
 - (void)selectPhotoPickerType:(HLImagePickerType)imagePickerType;
 - (void)showActionSheet;

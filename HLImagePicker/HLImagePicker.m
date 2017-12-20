@@ -91,6 +91,14 @@ static dispatch_once_t onceToken;
     [alertController addAction:cameraAction];
     [alertController addAction:photoAction];
     [alertController addAction:cancelAction];
+    
+    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+    if (popover) {
+        popover.sourceView = [HLImagePicker topViewController].view;
+        popover.sourceRect = CGRectMake(CGRectGetWidth([HLImagePicker topViewController].view.bounds)/2 - 200, CGRectGetHeight([HLImagePicker topViewController].view.bounds)/2 - 100, 100, 100);
+        popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    }
+    
     [[HLImagePicker topViewController] presentViewController:alertController animated:YES completion:nil];
 }
 

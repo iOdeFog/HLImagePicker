@@ -413,6 +413,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "27f58301-9d24-42bd-9240-f83d227f6fde";
 				PROVISIONING_PROFILE_SPECIFIER = Common_lhl_Development;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -427,6 +428,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "27f58301-9d24-42bd-9240-f83d227f6fde";
 				PROVISIONING_PROFILE_SPECIFIER = Common_lhl_Development;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

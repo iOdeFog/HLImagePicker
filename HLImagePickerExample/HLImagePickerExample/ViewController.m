@@ -24,6 +24,7 @@
 
 - (IBAction)imagePicker:(id)sender {
     __weak typeof(self) mySelf = self;
+    [[HLImagePicker shareInstanced] setUseAVSessionImagePiker:NO];
     [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
         mySelf.contentImageView.image = image;
     } dataBlock:^(NSData *data, id picker) {
