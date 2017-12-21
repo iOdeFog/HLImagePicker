@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "HLImagePicker"
-  s.version      = "1.2.3"
+  s.version      = "1.2.4"
   s.summary      = "以Alert快速从相册选择一张图片，并可以按照尺寸压缩，压缩又分为像素压缩和非像素压缩"
 
   # This description is used to generate tags and improve search results.
