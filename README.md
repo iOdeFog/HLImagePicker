@@ -61,9 +61,7 @@ header.h 部分方法
 
 ```
 /**
- *  回调代理
- *  是否进行裁剪压缩
- *  最大像素尺寸。如果设置为0，则默认为maxPixel
+ *  选择图片回调代理，不进行压缩
  */
 + (HLImagePicker *)showPickerImageBlock:(PikerImageBlock)imageBlock
                               dataBlock:(PikerDataBlock)dataBlock;
@@ -71,31 +69,48 @@ header.h 部分方法
 
 
 /*
- *  @param  originImage    处理原始图片 默认为NO
- *    @param     pixelCompress     是否进行像素压缩
- *    @param     maxPixel     压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
- *    @param     jpegCompress     是否进行JPEG压缩,jpeg 压缩会更肖
- *    @param     maxKB     图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
+ *    @param     originImage        处理原始图片 默认为NO
+ *    @param     jpegCompress       是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     max               图片最大体积，以字节为单位
+ *
+ */
++ (HLImagePicker *)showPickerJpegMaxSize:(CGFloat)maxSize
+                               ImageBlock:(PikerImageBlock)imageBlock
+                                dataBlock:(PikerDataBlock)dataBlock;
+
+/*
+ *    @param   maxPixel  最大宽或者高尺寸像素，如果宽长，则指的是宽，如果高长，则指的是高
+ *
+ */
++ (HLImagePicker *)showPickerMaxPixel:(CGFloat)maxPixel
+                           ImageBlock:(PikerImageBlock)imageBlock
+                            dataBlock:(PikerDataBlock)dataBlock;
+
+
+/*
+ *  @param       originImage    处理原始图片 默认为NO
+ *    @param     pixelCompress  是否进行像素压缩
+ *    @param     maxPixel       最大宽或者高尺寸像素，如果宽长，则指的是宽，如果高长，则指的是高；pixelCompress=NO时，此参数无效。
+ *    @param     jpegCompress   是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     maxKB          图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
  *
  */
 + (HLImagePicker *)showPickerOriginImage:(BOOL)originImage
                            pixelCompress:(BOOL)pixelCompress
                                 maxPixel:(CGFloat)maxPixel
                             jpegCompress:(BOOL)jpegCompress
-                              maxSize_KB:(CGFloat)maxSize_KB
+                                 maxSize:(CGFloat)maxSize
                               ImageBlock:(PikerImageBlock)imageBlock
                                dataBlock:(PikerDataBlock)dataBlock;
-
-
 
 /*
  *    @brief    压缩图片 @Fire
  *
- *    @param     originImage     原始图片
+ *    @param     originImage       原始图片
  *    @param     pixelCompress     是否进行像素压缩
- *    @param     maxPixel     压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
- *    @param     jpegCompress     是否进行JPEG压缩,jpeg 压缩会更肖
- *    @param     maxKB     图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
+ *    @param     maxPixel          最大宽或者高尺寸像素，如果宽长，则指的是宽，如果高长，则指的是高；pixelCompress=NO时，此参数无效。
+ *    @param     jpegCompress      是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     maxKB             图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
  *
  *    @return    返回图片的NSData
  */
@@ -103,7 +118,8 @@ header.h 部分方法
            pixelCompress:(BOOL)pixelCompress
                 maxPixel:(CGFloat)maxPixel
             jpegCompress:(BOOL)jpegCompress
-              maxSize_KB:(CGFloat)maxSize_KB;
+              maxSize:(CGFloat)maxSize;
+
 
 - (void)selectPhotoPickerType:(HLImagePickerType)imagePickerType;
 - (void)showActionSheet;
