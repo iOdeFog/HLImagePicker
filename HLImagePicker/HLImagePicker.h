@@ -28,7 +28,7 @@ typedef void(^PikerDataBlock)(NSData *data, id picker);
 @property (nonatomic, assign) BOOL pixelCompress;
 @property (nonatomic, assign) CGFloat maxPixel;
 @property (nonatomic, assign) BOOL jpegCompress;
-@property (nonatomic, assign) CGFloat maxSize_KB;
+@property (nonatomic, assign) CGFloat maxSize;
 
 @property (nonatomic, assign) BOOL isShowing ;
 @property (nonatomic, assign) BOOL allowsEditing;
@@ -56,31 +56,48 @@ typedef void(^PikerDataBlock)(NSData *data, id picker);
 
 
 /*
- *  @param  originImage    处理原始图片 默认为NO
- *    @param     pixelCompress     是否进行像素压缩
- *    @param     maxPixel     压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
- *    @param     jpegCompress     是否进行JPEG压缩,jpeg 压缩会更肖
- *    @param     maxKB     图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
+ *    @param     originImage        处理原始图片 默认为NO
+ *    @param     jpegCompress       是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     max               图片最大体积，以字节为单位
+ *
+ */
++ (HLImagePicker *)showPickerJpegMaxSize:(CGFloat)maxSize
+                               ImageBlock:(PikerImageBlock)imageBlock
+                                dataBlock:(PikerDataBlock)dataBlock;
+
+/*
+ *    @param     最大宽或者高尺寸像素，如果宽长，则指的是宽，如果高长，则指的是高
+ *
+ */
++ (HLImagePicker *)showPickerMaxPixel:(CGFloat)maxPixel
+                           ImageBlock:(PikerImageBlock)imageBlock
+                            dataBlock:(PikerDataBlock)dataBlock;
+
+
+/*
+ *  @param       originImage    处理原始图片 默认为NO
+ *    @param     pixelCompress  是否进行像素压缩
+ *    @param     maxPixel       压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
+ *    @param     jpegCompress   是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     maxKB          图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
  *
  */
 + (HLImagePicker *)showPickerOriginImage:(BOOL)originImage
                            pixelCompress:(BOOL)pixelCompress
                                 maxPixel:(CGFloat)maxPixel
                             jpegCompress:(BOOL)jpegCompress
-                              maxSize_KB:(CGFloat)maxSize_KB
+                                 maxSize:(CGFloat)maxSize
                               ImageBlock:(PikerImageBlock)imageBlock
                                dataBlock:(PikerDataBlock)dataBlock;
-
-
 
 /*
  *    @brief    压缩图片 @Fire
  *
- *    @param     originImage     原始图片
+ *    @param     originImage       原始图片
  *    @param     pixelCompress     是否进行像素压缩
- *    @param     maxPixel     压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
- *    @param     jpegCompress     是否进行JPEG压缩,jpeg 压缩会更肖
- *    @param     maxKB     图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
+ *    @param     maxPixel          压缩后长和宽的最大像素；pixelCompress=NO时，此参数无效。
+ *    @param     jpegCompress      是否进行JPEG压缩,jpeg 压缩会更肖
+ *    @param     maxKB             图片最大体积，以KB为单位；jpegCompress=NO时，此参数无效。
  *
  *    @return    返回图片的NSData
  */
@@ -88,7 +105,7 @@ typedef void(^PikerDataBlock)(NSData *data, id picker);
            pixelCompress:(BOOL)pixelCompress
                 maxPixel:(CGFloat)maxPixel
             jpegCompress:(BOOL)jpegCompress
-              maxSize_KB:(CGFloat)maxSize_KB;
+              maxSize:(CGFloat)maxSize;
 
 
 - (void)selectPhotoPickerType:(HLImagePickerType)imagePickerType;

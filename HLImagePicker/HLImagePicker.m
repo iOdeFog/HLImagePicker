@@ -128,14 +128,42 @@ static dispatch_once_t onceToken;
 + (HLImagePicker *)showPickerImageBlock:(PikerImageBlock)imageBlock
                               dataBlock:(PikerDataBlock)dataBlock
 {
-    return [HLImagePicker showPickerOriginImage:NO pixelCompress:NO maxPixel:MAXFLOAT jpegCompress:YES maxSize_KB:MAXFLOAT ImageBlock:imageBlock dataBlock:dataBlock];
+    return [HLImagePicker showPickerOriginImage:NO pixelCompress:NO maxPixel:MAXFLOAT jpegCompress:YES maxSize:MAXFLOAT ImageBlock:imageBlock dataBlock:dataBlock];
 }
+
++ (HLImagePicker *)showPickerJpegMaxSize:(CGFloat)maxSize
+                               ImageBlock:(PikerImageBlock)imageBlock
+                                dataBlock:(PikerDataBlock)dataBlock
+{
+    return [HLImagePicker showPickerOriginImage:NO
+                                  pixelCompress:NO
+                                       maxPixel:0
+                                   jpegCompress:YES
+                                     maxSize:maxSize
+                                     ImageBlock:imageBlock
+                                      dataBlock:dataBlock];
+}
+
+
++ (HLImagePicker *)showPickerMaxPixel:(CGFloat)maxPixel
+                           ImageBlock:(PikerImageBlock)imageBlock
+                            dataBlock:(PikerDataBlock)dataBlock
+{
+    return [HLImagePicker showPickerOriginImage:NO
+                                  pixelCompress:YES
+                                       maxPixel:maxPixel
+                                   jpegCompress:NO
+                                     maxSize:0
+                                     ImageBlock:imageBlock
+                                      dataBlock:dataBlock];
+}
+
 
 + (HLImagePicker *)showPickerOriginImage:(BOOL)originImage
                            pixelCompress:(BOOL)pixelCompress
                                 maxPixel:(CGFloat)maxPixel
                             jpegCompress:(BOOL)jpegCompress
-                              maxSize_KB:(CGFloat)maxSize_KB
+                              maxSize:(CGFloat)maxSize
                               ImageBlock:(PikerImageBlock)imageBlock
                                dataBlock:(PikerDataBlock)dataBlock
 {
@@ -145,7 +173,7 @@ static dispatch_once_t onceToken;
         return imagePicker;
     }
     
-    [imagePicker showPickerOriginImage:originImage pixelCompress:pixelCompress maxPixel:maxPixel jpegCompress:jpegCompress maxSize_KB:maxSize_KB];
+    [imagePicker showPickerOriginImage:originImage pixelCompress:pixelCompress maxPixel:maxPixel jpegCompress:jpegCompress maxSize:maxSize];
     imagePicker.imageBlock = imageBlock;
     imagePicker.dataBlock = dataBlock;
     return imagePicker;
@@ -155,12 +183,12 @@ static dispatch_once_t onceToken;
                 pixelCompress:(BOOL)pixelCompress
                      maxPixel:(CGFloat)maxPixel
                  jpegCompress:(BOOL)jpegCompress
-                   maxSize_KB:(CGFloat)maxSize_KB
+                   maxSize:(CGFloat)maxSize
 {
     self.pixelCompress = pixelCompress;
     self.maxPixel = maxPixel;
     self.jpegCompress = jpegCompress;
-    self.maxSize_KB = maxSize_KB;
+    self.maxSize = maxSize;
     [self showActionSheet];
 }
 
@@ -208,7 +236,7 @@ static dispatch_once_t onceToken;
            pixelCompress:(BOOL)pixelCompress
                 maxPixel:(CGFloat)maxPixel
             jpegCompress:(BOOL)jpegCompress
-              maxSize_KB: (CGFloat)maxSize_KB
+              maxSize: (CGFloat)maxSize
 {
     /*
      压缩策略： 支持最多921600个像素点
@@ -255,12 +283,10 @@ static dispatch_once_t onceToken;
     }
     
     if ( jpegCompress == YES ) {     //JPEG压缩
-        resultData = UIImageJPEGRepresentation(scopedImage, 0.8);
-        //        NSLog(@"data compress with ratio (0.9) : %d KB", data.length/1024);
+        resultData = [HLImagePicker compressWithImage:scopedImage maxLength:maxSize];
     }
     else {
         resultData = UIImageJPEGRepresentation(scopedImage, 1.0);
-        //        NSLog(@"data compress : %d KB", data.length/1024);
     }
     
     return resultData;
@@ -276,11 +302,11 @@ static dispatch_once_t onceToken;
     UIImage *resultImage = nil;
     if (!self.operationOriginImage) {
         resultImage = editedImage?:originalImage;
-        resultData = [self compressImage:resultImage pixelCompress:self.pixelCompress maxPixel:self.maxPixel jpegCompress:self.jpegCompress maxSize_KB:self.maxSize_KB];
+        resultData = [self compressImage:resultImage pixelCompress:self.pixelCompress maxPixel:self.maxPixel jpegCompress:self.jpegCompress maxSize:self.maxSize];
     }
     else{
         resultImage = originalImage;
-        resultData = [self compressImage:resultImage pixelCompress:self.pixelCompress maxPixel:self.maxPixel jpegCompress:self.jpegCompress maxSize_KB:self.maxSize_KB];
+        resultData = [self compressImage:resultImage pixelCompress:self.pixelCompress maxPixel:self.maxPixel jpegCompress:self.jpegCompress maxSize:self.maxSize];
     }
     if (self.imageBlock) {
         self.imageBlock(resultImage, self);
@@ -302,6 +328,52 @@ static dispatch_once_t onceToken;
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
     picker = nil;
+}
+
+#pragma mark -
+
++ (NSData *)compressWithImage:(UIImage *)image maxLength:(NSUInteger)maxLength{
+    // Compress by quality
+    CGFloat compression = 1;
+    NSData *data = UIImageJPEGRepresentation(image, compression);
+    //NSLog(@"Before compressing quality, image size = %ld KB",data.length/1024);
+    if (data.length < maxLength) return data;
+    
+    CGFloat max = 1;
+    CGFloat min = 0;
+    for (int i = 0; i < 6; ++i) {
+        compression = (max + min) / 2;
+        data = UIImageJPEGRepresentation(image, compression);
+        //NSLog(@"Compression = %.1f", compression);
+        //NSLog(@"In compressing quality loop, image size = %ld KB", data.length / 1024);
+        if (data.length < maxLength * 0.9) {
+            min = compression;
+        } else if (data.length > maxLength) {
+            max = compression;
+        } else {
+            break;
+        }
+    }
+    //NSLog(@"After compressing quality, image size = %ld KB", data.length / 1024);
+    if (data.length < maxLength) return data;
+    UIImage *resultImage = [UIImage imageWithData:data];
+    // Compress by size
+    NSUInteger lastDataLength = 0;
+    while (data.length > maxLength && data.length != lastDataLength) {
+        lastDataLength = data.length;
+        CGFloat ratio = (CGFloat)maxLength / data.length;
+        //NSLog(@"Ratio = %.1f", ratio);
+        CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
+                                 (NSUInteger)(resultImage.size.height * sqrtf(ratio))); // Use NSUInteger to prevent white blank
+        UIGraphicsBeginImageContext(size);
+        [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        resultImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        data = UIImageJPEGRepresentation(resultImage, compression);
+        //NSLog(@"In compressing size loop, image size = %ld KB", data.length / 1024);
+    }
+    //NSLog(@"After compressing size loop, image size = %ld KB", data.length / 1024);
+    return data;
 }
 
 @end

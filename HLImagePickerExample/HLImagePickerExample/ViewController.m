@@ -25,11 +25,27 @@
 - (IBAction)imagePicker:(id)sender {
     __weak typeof(self) mySelf = self;
     [[HLImagePicker shareInstanced] setUseAVSessionImagePiker:NO];
-    [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
-        mySelf.contentImageView.image = image;
+    
+//    [HLImagePicker showPickerJpegMaxSize:200*1024 ImageBlock:^(UIImage *image, id picker) {
+//
+//    } dataBlock:^(NSData *data, id picker) {
+//        NSLog(@"%@",@(data.length));
+//
+//    }];
+    
+    [HLImagePicker showPickerPixelMaxSize:320 ImageBlock:^(UIImage *image, id picker) {
+
     } dataBlock:^(NSData *data, id picker) {
-        
+        NSLog(@"%@",@(data.length));
+
     }];
+    
+//    [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
+//        mySelf.contentImageView.image = image;
+//    } dataBlock:^(NSData *data, id picker) {
+//        NSLog(@"%@",@(data.length));
+//
+//    }];
 }
 
 - (IBAction)avImagePicker:(id)sender {
@@ -44,7 +60,8 @@
     [HLImagePicker  showPickerImageBlock:^(UIImage *image, id picker) {
         mySelf.contentImageView.image = image;
     } dataBlock:^(NSData *data, id picker) {
-        
+        NSLog(@"%@",@(data.length));
+
     }];
 
 }
